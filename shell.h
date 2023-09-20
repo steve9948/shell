@@ -26,7 +26,11 @@ char *string_dup(char *str);
 int string_length(char *str);
 char *string_char(char *str, char c);
 
-/*ident_path - Identifies or verifies the commad to the path*/
+/**
+ * ident_path - path to the executable bin
+ *
+ * Return: void
+ */
 char *ident_path(void)
 
 
@@ -39,19 +43,26 @@ void user_exit(char **cmd, char *line);
 char *_path_verification(char **path, char *cmd);
 
 /**
- *path verifier 
-*/
+ * verif_path - Confirms the path to the valid user input
+ * @path: The command addres
+ * @cmd: the command to be interpreated
+ *
+ * Return: (0).
+ */
 char *verif_path(char *path, char *cmd)
 void verif_sig(int j);
-
 
 
 /* helper function to free memory */
 void free_buffs(char **buffer);
 
 /**
- * identifies builtin command
-*/
+ * struct builtin - verifies if its a builtin command
+ * @env: the environmet
+ * @exit: The status
+ *
+ * Return: (0)
+ */
 struct builtin
 {
 	char *env;
@@ -59,8 +70,13 @@ struct builtin
 } builtin;
 
 /**
- * A structure for when to exit
-*/
+ * struct info - gives the final information of the user cmd
+ *
+ *@final_exit: the last value
+ *@ln_count: the counted span
+ *
+ * Return: (0)
+ */
 struct info
 {
 	int final_exit;
@@ -68,8 +84,12 @@ struct info
 } info;
 
 /**
- * make the command interactive to the user
-*/
+ * struct flags - The string commands
+ *
+ * @interactive: The verifier to check wether its a command or not
+ *
+ * Return: (True or false)
+ */
 struct flags
 {
 	bool interactive;
