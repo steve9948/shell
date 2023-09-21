@@ -31,7 +31,7 @@ char *string_char(char *str, char c);
  *
  * Return: void
  */
-char *ident_path(void)
+char *ident_path(void);
 
 
 /*Buitins verifier and handlers*/
@@ -41,6 +41,7 @@ void user_input(void);
 int verif(char **ucmd, char *buffer);
 void user_exit(char **cmd, char *line);
 char *_path_verification(char **path, char *cmd);
+void verif_sig(int j);
 
 /**
  * verif_path - Confirms the path to the valid user input
@@ -49,8 +50,7 @@ char *_path_verification(char **path, char *cmd);
  *
  * Return: (0).
  */
-char *verif_path(char *path, char *cmd)
-void verif_sig(int j);
+char *verif_path(char *path, char *cmd);
 
 
 /* helper function to free memory */

@@ -19,7 +19,6 @@ int main(int ac, char **av, char *envp[])
 	(void)envp, (void)av;
 	if (ac < 1)
 		return (-1);
-	signal(sigint, verif_sig);
 	signal(SIGINT, verif_sig);
 	while (1)
 	{
