@@ -1,52 +1,51 @@
-#include "shell.h"
-
+#include "main.h"
 /**
-* main - carries out the read, execute then print outputto stdout
-* @ac: Argument count (argc)
-* @av: Argument vector (argv)
-* @envp: Environment pointer
+* main - carries out the read, execute then print result loop
+* @ac: argument count
+* @av: argument vector
+* @envp: environment vector
 *
 * Return: 0
 */
 
 int main(int ac, char **av, char *envp[])
 {
-	(void)envp, (void)av;
-	char *line = NULL, *pathcommand = NULL, *path = NULL;
-	size_t bufsize = 0;
-	ssize_t linesize = 0;
-	char **cmd = NULL, **paths = NULL;
+	char *in_sequence = NULL, *p_cmd = NULL, *path = NULL;
+	size_t s_buff = 0;
+	ssize_t l_size = 0;
+	char **u_cmd = NULL, **paths = NULL;
 	(void)envp, (void)av;
 	if (ac < 1)
 		return (-1);
-	signal(SIGINT, verif_sig);
+	signal(SIGINT, sig_processor);
 	while (1)
 	{
-		free_buffs(cmd);
-		free_buffs(paths);
-		free(pathcommand);
-		user_input();
-		linesize = getline(&line, &bufsize, stdin);
-		if (linesize < 0)
+		release_buffers(u_cmd);
+		release_buffers(paths);
+		free(p_cmd);
+		user_cmd();
+		l_size = getline(&in_sequence, &s_buff, stdin);
+		if (l_size < 0)
 			break;
 		info.ln_count++;
-		if (line[linesize - 1] == '\n')
-			line[linesize - 1] = '\0';
-		cmd = tokenizer(line);
-		if (cmd == NULL || *cmd == NULL || **cmd == '\0')
+		if (in_sequence[l_size - 1] == '\n')
+			in_sequence[l_size - 1] = '\0';
+		u_cmd = parser_tok(in_sequence);
+		if (u_cmd == NULL || *u_cmd == NULL || **u_cmd == '\0')
 			continue;
-		if (verif(cmd, line))
+		if (verif(u_cmd, in_sequence))
 			continue;
-		path = ident_path();
-		paths = tokenizer(path);
-		pathcommand = _path_verification(paths, cmd[0]);
-		if (!pathcommand)
+		path = locate_path();
+		paths = parser_tok(path);
+		pathu_cmd = verif_path(paths, u_cmd[0]);
+		if (!pathu_cmd)
 			perror(av[0]);
 		else
-			process_data(pathcommand, cmd);
+			command_runner(p_cmd, u_cmd);
 	}
-	if (linesize < 0 && flags.interactive)
+	if (l_size < 0 && flags.interactive)
 		write(STDERR_FILENO, "\n", 1);
-	free(line);
+	free(in_sequence);
 	return (0);
 }
+
