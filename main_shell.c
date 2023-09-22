@@ -30,15 +30,15 @@ int main(int ac, char **av, char *envp[])
 		info.ln_count++;
 		if (in_sequence[l_size - 1] == '\n')
 			in_sequence[l_size - 1] = '\0';
-		u_cmd = parser_tok(in_sequence);
+		u_cmd = parser_token(in_sequence);
 		if (u_cmd == NULL || *u_cmd == NULL || **u_cmd == '\0')
 			continue;
 		if (verif(u_cmd, in_sequence))
 			continue;
 		path = locate_path();
-		paths = parser_tok(path);
-		pathu_cmd = verif_path(paths, u_cmd[0]);
-		if (!pathu_cmd)
+		paths = parser_token(path);
+		path_u_cmd = verif_path(paths, u_cmd[0]);
+		if (!path_u_cmd)
 			perror(av[0]);
 		else
 			command_runner(p_cmd, u_cmd);

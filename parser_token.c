@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
-* parser_token - Tokenizes given input
+* parser_tokenen - Tokenizes given input
 * @in_sequence: String input to be tokenized
 *
 * Return: array of strings
 */
-char **parser_token(char *in_sequence)
+char **parser_tokenen(char *in_sequence)
 {
 	char *buf = NULL, *ptr_buff = NULL, *token = NULL, *delim = " :\t\r\n";
 	char **toks = NULL;

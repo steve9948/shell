@@ -20,7 +20,7 @@ extern __sighandler_t signal(int __sig, __sighandler_t __handler);
 int verif(char **cmd, char *buf);
 void user_cmd(void);
 void sig_processor(int m);
-char **parser_token(char *in_sequence);
+char **parser_tokenen(char *in_sequence);
 char *verif_path(char **path, char *u_cmd);
 char *extender_appender(char *path, char *u_cmd);
 int internal_commands(char **u_cmd, char *in_sequence);
@@ -46,7 +46,7 @@ void release_buffers(char **buf);
  * @env: environment variable
  * @exit: exit cmd
  *
- * Return: nothing
+ * Return : nothing
 */
 struct builtin
 {
@@ -68,7 +68,7 @@ struct info
 } info;
 
 /**
- * struct flags - command flags
+ * struct flags -  command flags
  * @interactive: lexer verifier
  *
  * Return: nothing
